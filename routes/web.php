@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BackendController;
+use App\Http\Controllers\MyController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +49,6 @@ Route::get('promo/{barang?}/{promo?}',function ($a, $b = null) {
 return view('promo', compact('a','b'));
 });
 
-use App\Http\Controllers\MyController;
 Route::get('siswa',[MyController::class,'index']);
 //create
 Route::get('siswa/create', [MyController::class, 'create']);
@@ -62,3 +64,10 @@ Route::delete('siswa/{id}', [MyController::class, 'destroy']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//imput control
+
+//route adimin/ bekend
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
+    Route::get('/', [BackendController::class,'index']);
+});
