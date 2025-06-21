@@ -1496,26 +1496,29 @@
                         <span class="hide-menu">External Link</span>
                     </a>
                 </li>
-            </ul>
-        </nav>
+                </ul>
+                </nav>
 
-        <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
-            <div class="hstack gap-3">
-                <div class="john-img">
-                    <img src="./assets/backend/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="modernize-img" />
+                <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
+                    <div class="hstack gap-3">
+                        <div class="john-img">
+                            <img src="./assets/backend/images/profile/user-1.jpg" class="rounded-circle" width="40" height="40" alt="modernize-img" />
+                        </div>
+                        <div class="john-title">
+                            <h6 class="mb-0 fs-4 fw-semibold">{{Auth::user()->name}}</h6>
+                            <span class="fs-2">{{Auth::user()->isAdmin == 1 ? 'Raihan gantenk': ''}}</span>
+                        </div>
+                        <a href="{{ route('logout')}}" onclick="event.preventDefault(); document/getElementById('logout-form').submit();" class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
+                            <i class="ti ti-power fs-6"></i>
+                        </a>
+                        <form action="{{ route('logout')}}" method="post" id="logout-form">
+                            @csrf
+                        </form>
+                    </div>
                 </div>
-                <div class="john-title">
-                    <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
-                    <span class="fs-2">Designer</span>
-                </div>
-                <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-                    <i class="ti ti-power fs-6"></i>
-                </button>
-            </div>
-        </div>
 
-        <!-- ---------------------------------- -->
-        <!-- Start Vertical Layout Sidebar -->
-        <!-- ---------------------------------- -->
-    </div>
-</aside>
+                <!-- ---------------------------------- -->
+                <!-- Start Vertical Layout Sidebar -->
+                <!-- ---------------------------------- -->
+                </div>
+                </aside>

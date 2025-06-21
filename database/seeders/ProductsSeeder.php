@@ -32,7 +32,7 @@ class ProductsSeeder extends Seeder
         product::create([
             'name'      => 'Samsung S25 5G',
             'slug'     => 'samsung-s25-5g',
-            'category_id'=> $category1,
+            'category_id'=> $category1 -> id,
             'description'=> 'Lorem Ipsum',
             'image'=> 'image.png',
             'price'=> 24000000,
@@ -43,7 +43,7 @@ class ProductsSeeder extends Seeder
         product::create([
             'name'      => 'Sapu Lidi',
             'slug'     => 'sapu-lidi',
-            'category_id'=> $category2,
+            'category_id'=> $category2 -> id,
             'description'=> 'Lorem Ipsum',
             'image'=> 'image.png',
             'price'=> 5000,

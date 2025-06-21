@@ -65,9 +65,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//imput control
-
+//imput middl
+use App\Http\Middleware\Admin;
 //route adimin/ bekend
-Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', Admin::class]], function (){
     Route::get('/', [BackendController::class,'index']);
 });
