@@ -3,83 +3,113 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Storage;
+use Str;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $product = Product::latest()->get();
+
+        $title = 'Hapus Data!';
+        $text = "Apakah anda yakin?";
+        confirmDelete($title, $text);
+
+        return view('backend.product.index', compact('product'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $category = Category::all(); // untuk select option
+        return view('backend.product.create', compact('category'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|unique:categories',
+            'category_id' => 'required',
+            'price'       => 'required|numeric',
+            'description' => 'required',
+            'stock'       => 'required|numeric',
+            'image'       => 'required|image|mimes:jpg,png',
+        ]);
+
+        $product = new Product();
+        $product->name        = $request->name;
+        $product->slug        = Str::slug($request->name, '-');
+        $product->category_id = $request->category_id;
+        $product->description = $request->description;
+        $product->price       = $request->price;
+        $product->stock       = $request->stock;
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $randomName = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('products', $randomName, 'public');
+            $product->image = $path;
+        }
+
+        $product->save();
+        toast('Data berhasil disimpan', 'success');
+        return redirect()->route('product.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return view('backend.product.show', compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(string $id)
     {
-        //
+        $product  = Product::findOrFail($id);
+        $category = Category::all();
+        return view('backend.product.edit', compact('product', 'category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name'        => 'required|unique:categories',
+            'category_id' => 'required',
+            'price'       => 'required|numeric',
+            'description' => 'required',
+            'stock'       => 'required|numeric',
+            // 'image'       => 'image|mimes:jpg,png',
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->name        = $request->name;
+        $product->slug        = Str::slug($request->name, '-');
+        $product->category_id = $request->category_id;
+        $product->description = $request->description;
+        $product->price       = $request->price;
+        $product->stock       = $request->stock;
+
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($product->image);
+            $file = $request->file('image');
+            $randomName = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('products', $randomName, 'public');
+            $product->image = $path;
+        }
+
+        $product->save();
+        toast('Data berhasil disimpan', 'success');
+        return redirect()->route('product.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        Storage::disk('public')->delete($product->image);
+        $product->delete();
+        toast('Data berhasil dihapus', 'success');
+        return redirect()->route('product.index');
     }
 }
