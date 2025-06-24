@@ -36,7 +36,7 @@ class ProductController extends Controller
             'price'       => 'required|numeric',
             'description' => 'required',
             'stock'       => 'required|numeric',
-            'image'       => 'required|image|mimes:jpg,png',
+            'image'       => 'required|image|mimes:jpg,png|max:1024',
         ]);
 
         $product = new Product();
@@ -80,7 +80,7 @@ class ProductController extends Controller
             'price'       => 'required|numeric',
             'description' => 'required',
             'stock'       => 'required|numeric',
-            // 'image'       => 'image|mimes:jpg,png',
+            // 'image'       => 'image|mimes:jpg,png|max:1024',
         ]);
 
         $product = Product::findOrFail($id);
