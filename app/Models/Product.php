@@ -19,7 +19,15 @@ class Product extends Model
     }
 
     public function orders(){
-        return $this->belongsToMany(Order::clas)->withPivot('qty','price')
+        return $this->belongsToMany(Order::class)->withPivot('qty','price')
             ->withTimestamps();
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
+    public function getRouteKeyName(){
+        return 'slug';
     }
 }

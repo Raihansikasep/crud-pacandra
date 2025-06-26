@@ -19,6 +19,16 @@
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/futura-std-4">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/slick.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css')}}">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome (v5.15.4) -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+    <!-- Bootstrap JS Bundle (Popper.js included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
     @yield('styles')
 
@@ -67,6 +77,8 @@
     <script src="{{ asset('assets/frontend/js/plugins.js')}} "></script>
     <script src="{{ asset('assets/frontend/js/main.js')}} "></script>
 
+    @include('sweetalert::alert')
+    @yield('js')
     @stack('scripts')
 </body>
 

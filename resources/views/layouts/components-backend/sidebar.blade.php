@@ -26,7 +26,7 @@
                 <!-- Dashboard -->
                 <!-- ---------------------------------- -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="" id="get-url" aria-expanded="false">
+                    <a class="sidebar-link" href="{{route('backend.category.index')}}" id="get-url" aria-expanded="false">
                         <span>
                             <i class="ti ti-aperture"></i>
                         </span>
@@ -34,11 +34,19 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./main/index2.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{route('backend.product.index')}}" aria-expanded="false">
                         <span>
                             <i class="ti ti-shopping-cart"></i>
                         </span>
                         <span class="hide-menu">Product</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{route('backend.orders.index')}}" id="get-url" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-aperture"></i>
+                        </span>
+                        <span class="hide-menu">Orders</span>
                     </a>
                 </li>
                 </ul>

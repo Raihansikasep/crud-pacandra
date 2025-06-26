@@ -81,30 +81,14 @@
      <!-- best__selling__start -->
      <div class="best__selling sp_bottom_80">
          <div class="container">
-
+<br>
              <div class="row">
                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                      <div class="section__title">
                          <h2>Best Selling</h2>
                      </div>
                  </div>
-                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                     <div class="best__selling__tab">
-                         <ul class="nav  best__selling__tab__wrap" id="myTab" role="tablist">
-                             <li class="nav-item" role="presentation">
-                                 <button class="product__tap__link active" data-bs-toggle="tab" data-bs-target="#projects__one" type="button">Man</button>
-                             </li>
-                             <li class="nav-item" role="presentation">
-                                 <button class="product__tap__link" data-bs-toggle="tab" data-bs-target="#projects__two" type="button">Woman</button>
-                             </li>
-                             <li class="nav-item" role="presentation">
-                                 <button class="product__tap__link" data-bs-toggle="tab" data-bs-target="#projects__three" type="button">Baby</button>
-                             </li>
-
-
-                         </ul>
-                     </div>
-                 </div>
+                 
              </div>
 
              <div class="tab-content " id="myTabContent">
@@ -127,7 +111,7 @@
                                         <div class="grid__wraper__icon">
                                             <ul>
                                                 <li>
-                                                    <span data-bs-toggle="modal" data-bs-target="#product-{{$data->slug}}">
+                                                    <span data-bs-toggle="modal" data-bs-target="product{{$data->slug}}">
                                                         <a class="quick__view__action" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" data-bs-original-title="Quick View">
                                                             <i class="far fa-eye"></i>
                                                         </a>
@@ -1955,7 +1939,7 @@
      <!-- instagram__end -->
     <!-- modal__section__start -->
     @foreach($product as $data)
-        <div class="grid__quick__view__modal modalarea modal fade" id="#product-{{$data->slug}}" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+        {{-- <div class="grid__quick__view__modal modalarea modal fade" id="#product-{{$data->slug}}" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -1978,6 +1962,61 @@
                                         {{number_format($data->price,0,'.','.')}}
                                     </div>
                                     <p>{{$data->description}}</p>
+
+                                    <div class="featurearea__quantity">
+                                        <div class="qty-container">
+                                            <button class="qty-btn-minus btn-qty" type="button"><i class="fa fa-minus"></i></button>
+                                            <input type="text" name="qty" value="1" class="input-qty">
+                                            <button class="qty-btn-plus btn-qty" type="button"><i class="fa fa-plus"></i></button>
+                                        </div>
+                                        <a class="default__button" href="#">Add to cart</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <div class="grid_quickview_modal modalarea modal fade" id="product" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-body">
+                        <div class="row align-items-center">
+
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+
+                                <div class="grid_quick_img">
+                                    <img src="{{Storage::url($data->image)}}" alt="">
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                                <div class="grid_quick_content">
+                                    <h3>{{$data->name}}</h3>
+                                    <div class="quick__price">
+                                        {{$data->price}}
+                                    </div>
+                                    <p>we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensuel...</p>
+
+
+                                    <div class="selector__wrapper">
+                                        <select class="single-option-selector select--wd" data-option="option1" id="product-select-qv-option-0">
+                                            <option value="White">White</option>
+                                            <option value="Gold">Gold</option>
+                                            <option value="l">l</option>
+                                            <option value="Grey">Grey</option>
+                                            <option value="Maroon">Maroon</option>
+                                            <option value="Magenta">Magenta</option>
+                                        </select>
+                                    </div>
+
 
                                     <div class="featurearea__quantity">
                                         <div class="qty-container">
