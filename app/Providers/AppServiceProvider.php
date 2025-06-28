@@ -34,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
                     ->where('user_id', Auth::id())
                     ->get();
             }
+
+            $view->with('cartItems', collect($cartItems));
         });
     }
 }

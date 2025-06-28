@@ -19,7 +19,7 @@
 </div>
 
 <!-- orders section start -->
-<div class="cartarea sp_top_100 sp_bottom_100">
+<div class="cartarea sp__top__100 sp__bottom__100">
     <div class="container">
         <h4 class="mb-4">Order History</h4>
         <div class="table-responsive">

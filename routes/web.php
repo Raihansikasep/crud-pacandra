@@ -4,7 +4,7 @@ use App\Http\Controllers\BackendController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\OrderController as BackendOrderController;
+use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
